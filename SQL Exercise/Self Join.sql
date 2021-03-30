@@ -63,13 +63,14 @@ SELECT DISTINCT bstop.name, a.company, a.num FROM
 //10. Find the routes involving two buses that can go from Craiglockhart to Sighthill.
 //Show the bus no. and company for the first bus, the name of the stop for the transfer,
 //and the bus no. and company for the second bus.
-//Not working properly
-SELECT a.num, a.company, bstop.name, c.num, c.company FROM
-	route AS a JOIN route AS b ON (a.company = b.company AND a.num = b.num)
-			   JOIN route AS c ON (b.stop = c.stop)
-			   JOIN route AS d ON (c.company = d.company AND c.num = d.num)
-			   JOIN stops AS astop ON (a.stop = astop.id)
-			   JOIN stops AS bstop ON (b.stop = bstop.id)
-			   JOIN stops AS cstop ON (c.stop = cstop.id)
-			   JOIN stops AS dstop ON (d.stop = dstop.id)
-	WHERE astop.name = 'Craiglockhart' AND dstop.name = 'Sighthill' AND bstop.id = cstop.id 
+SELECT a.num, a.company, bstop.name, c.num, c.company 
+FROM route AS a 
+JOIN route AS b ON (a.company = b.company AND a.num = b.num)
+JOIN route AS c ON (b.stop = c.stop)
+JOIN route AS d ON (c.company = d.company AND c.num = d.num)
+JOIN stops AS astop ON (a.stop = astop.id)
+JOIN stops AS bstop ON (b.stop = bstop.id)
+JOIN stops AS cstop ON (c.stop = cstop.id)
+JOIN stops AS dstop ON (d.stop = dstop.id)
+WHERE astop.name = 'Craiglockhart' AND dstop.name = 'Lochend' 
+AND bstop.id = cstop.id;
